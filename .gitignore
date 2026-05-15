@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+
+# 用户数据（保留目录结构，不保留内容）
+raw/*
+!raw/.gitkeep
+temp/*
+!temp/.gitkeep
+output/*
+!output/.gitkeep
+models/*
+!models/.gitkeep
