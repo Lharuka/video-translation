@@ -17,7 +17,7 @@ import srt
 LLM_API_KEY = os.getenv("MOONSHOT_API_KEY", "")
 LLM_BASE_URL = "https://api.moonshot.cn/v1"
 LLM_MODEL = os.getenv("LLM_MODEL", "kimi-k2.6")
-THINKING_MODE = os.getenv("THINKING_MODE", "enabled")
+THINKING_MODE = os.getenv("THINKING_MODE", "disabled")
 
 TRANSLATE_PROMPT = (
     "你将收到一段视频的字幕文本，每行是一句原文。"
