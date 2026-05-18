@@ -10,7 +10,6 @@ AI 视频翻译工作流 - Gradio 前端
 
 import os
 import sys
-import shutil
 import subprocess
 import platform
 from pathlib import Path
@@ -71,13 +70,14 @@ def open_output_dir(video_path: str):
 
 
 def upload_video(file_obj):
-    """上传视频到 raw/ 目录。"""
+    """选择视频文件，直接使用原始路径，不复制到 raw/。"""
     if file_obj is None:
         return "未选择文件", gr.Dropdown(choices=refresh_video_list())
-    src = Path(file_obj)
-    dst = RAW_DIR / src.name
-    shutil.copy2(str(src), str(dst))
-    return f"已上传: {dst.name}", gr.Dropdown(choices=refresh_video_list(), value=str(dst))
+    src = str(file_obj)
+    return f"已选择: {Path(src).name}", gr.Dropdown(
+        choices=refresh_video_list() + [src],
+        value=src,
+    )
 
 
 def set_env(asr_backend, model_size, thinking_mode):
