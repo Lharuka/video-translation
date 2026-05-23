@@ -117,6 +117,40 @@ pip install openai srt faster-whisper gradio
 
 > `ffmpeg` 需要提前安装在系统中并加入 PATH。
 
+**安装 ffmpeg（Windows）**：
+
+本项目依赖 ffmpeg 进行音频提取和视频烧录。如果你尚未安装，推荐以下两种方式：
+
+**方式一：手动安装（推荐）**
+
+1. 从 [Gyan.dev](https://www.gyan.dev/ffmpeg/builds/) 下载 `ffmpeg-release-full.7z` 或 `ffmpeg-release-full.zip`
+2. 解压到任意目录，例如 `C:\Users\<用户名>\Downloads\ffmpeg-8.1.1-full_build`
+3. 找到解压目录下的 `bin` 子目录（内含 `ffmpeg.exe`、`ffprobe.exe`、`ffplay.exe`）
+4. 将 `bin` 目录的完整路径添加到系统环境变量 `Path` 中：
+
+```powershell
+# 以实际路径为准
+$binPath = 'C:\Users\41307\Downloads\ffmpeg-8.1.1-full_build\bin'
+$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ($currentPath -notlike "*$binPath*") {
+    [Environment]::SetEnvironmentVariable('Path', "$currentPath;$binPath", 'User')
+}
+```
+
+5. **新开一个 PowerShell 或终端窗口**，验证安装：
+
+```bash
+ffmpeg -version
+```
+
+**方式二：通过 winget 安装（需要管理员权限）**
+
+```powershell
+winget install Gyan.FFmpeg
+```
+
+安装完成后同样需要新开终端窗口使 PATH 生效。
+
 ### 3. 配置 API Key
 
 在系统环境变量中配置：
